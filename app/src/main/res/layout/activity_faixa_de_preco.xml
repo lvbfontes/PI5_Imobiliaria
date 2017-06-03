@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    tools:context="br.com.lvbfontes.piimobiliaria.pesquisaImovel.FaixaDePrecoActivity">
+
+    <TextView
+        style="@style/CabecalhoFiltros"
+        android:layout_marginTop="64dp"
+        android:text="@string/txtTelaFiltroFaixaPreco"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:clipChildren="false">
+
+        <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
+            android:id="@+id/seekBarFaixaPreco"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:corner_radius="5"
+            app:min_value="0"
+            app:max_value="500000"
+            app:steps="2000"
+            app:data_type="_integer"
+            android:layout_marginTop="32dp" />
+
+        <TextView
+            android:id="@+id/textMin1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_below="@id/seekBarFaixaPreco"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:textSize="16dp"
+            android:textColor="#000"/>
+
+        <TextView
+            android:id="@+id/textMax1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_below="@id/seekBarFaixaPreco"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="16dp"
+            android:textColor="#000"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <Button
+        style="@style/btn"
+        android:id="@+id/btnProntoFaixaPreco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/btnPronto"/>
+
+</LinearLayout>

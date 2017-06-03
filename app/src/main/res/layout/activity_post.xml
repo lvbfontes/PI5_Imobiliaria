@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="br.com.lvbfontes.piimobiliaria.PostActivity">
+
+    <ImageButton
+        android:id="@+id/imgButtonImagem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:backgroundTint="@android:color/transparent"
+        android:scaleType="centerCrop"
+        app:srcCompat="@mipmap/add_btn" />
+
+    <EditText
+        android:id="@+id/edtTipoImovel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:autoText="false"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="@string/hintTipoImovel" />
+
+    <EditText
+        android:id="@+id/edtComodos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:hint="@string/hintComodos"
+        android:layout_below="@+id/edtTipoImovel"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/edtValor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtComodos"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/hintPreco" />
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/spinnerDashboardContrato"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/imgButtonImagem" />
+
+    <EditText
+        android:id="@+id/edtArea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edtValor"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/hintArea" />
+
+    <Button
+        style="@style/btn"
+        android:id="@+id/btnPostFirebase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btnSalvar" />
+
+</RelativeLayout>

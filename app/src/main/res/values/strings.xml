@@ -1,0 +1,75 @@
+<resources>
+    <string name="app_name">PI Imobiliaria</string>
+
+    <string name="txtTelaIdiomas">Selecione o Idioma</string>
+    <string name="txtTelaFiltroContrato">O que você deseja encontrar?</string>
+    <string name="txtTelaFiltroTipoImovel">Que tipo de imóvel você procura?</string>
+    <string name="txtTelaFiltroComodos">Selecione o número de cômodos desejado</string>
+    <string name="txtTelaFiltroArea">Seleciona a área desejada</string>
+    <string name="txtTelaFiltroFaixaPreco">Selecione a faixa de preço</string>
+    <string name="txtTelaCadastro">Cadastre-se</string>
+
+    <string name="hintNome">Nome</string>
+    <string name="hintSobrenome">Sobrenome</string>
+    <string name="hintRepeteSenha">Repita a Senha</string>
+
+    <string name="edtEmail">E-mail</string>
+    <string name="edtSenha">Senha</string>
+
+    <string name="btnLogin">Login</string>
+    <string name="btnRecuperarSenha">Recuperar Senha</string>
+    <string name="btnCadastro">Cadastro</string>
+    <string name="btnIdioma">Idioma</string>
+    <string name="btnAluguel">Aluguel</string>
+    <string name="btnCompra">Compra</string>
+    <string name="btnPronto">Pronto!</string>
+    <string name="btnPortugues">Português</string>
+    <string name="btnIngles">Inglês</string>
+    <string name="btnEspanhol">Espanhol</string>
+    <string name="btnFrances">Francês</string>
+    <string name="btnConfirmaCadastro">Cadastrar!</string>
+
+    <string name="toastSenhaDiferente">As senhas devem ser iguais.</string>
+    <string name="titlePesquisar">Pesquisar Imóveis</string>
+    <string name="titleConfiguracoes">Configurações</string>
+    <string name="titleAdicionar">Adicionar</string>
+    <string name="hintTipoImovel">Tipo do Imóvel</string>
+    <string name="hintComodos">Número de Cômodos</string>
+    <string name="hintPreco">Valor</string>
+    <string name="hintArea">Área</string>
+    <string name="btnSalvar">Salvar!</string>
+
+    <string-array name="listaIdiomas">
+        <item>Português</item>
+        <item>Inglês</item>
+        <item>Espanhol</item>
+        <item>Francês</item>
+    </string-array>
+
+    <string-array name="listaTipoImovel">
+        <item>Casa</item>
+        <item>Apartamento</item>
+        <item>Comercial</item>
+        <item>Terreno</item>
+        <item>Chácara</item>
+    </string-array>
+
+    <string-array name="listaComodos">
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+    </string-array>
+
+    <string-array name="listaArea">
+        <item>150m²</item>
+        <item>250m²</item>
+        <item>300m²</item>
+        <item>500m²</item>
+        <item>1000m²</item>
+        <item>2000m²</item>
+        <item>3000m²</item>
+        <item>4000m²</item>
+    </string-array>
+</resources>

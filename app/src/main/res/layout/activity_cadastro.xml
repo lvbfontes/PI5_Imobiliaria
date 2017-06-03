@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="br.com.lvbfontes.piimobiliaria.CadastroActivity"
+    android:orientation="vertical">
+
+    <TextView
+        style="@style/CabecalhoFiltros"
+        android:paddingTop="30dp"
+        android:text="@string/txtTelaCadastro"/>
+
+    <EditText
+        android:id="@+id/edtNome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:inputType="textCapWords"
+        android:hint="@string/hintNome"/>
+
+    <EditText
+        android:id="@+id/edtSobrenome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:inputType="textCapWords"
+        android:hint="@string/hintSobrenome"/>
+
+    <EditText
+        android:id="@+id/edtEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edtEmail"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/edtSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edtSenha"
+        android:inputType="textPassword" />
+
+    <EditText
+        android:id="@+id/edtRepeteSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hintRepeteSenha"
+        android:inputType="textPassword"/>
+
+    <Button
+        style="@style/btn"
+        android:id="@+id/btnConfirmaCadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnConfirmaCadastro"
+        android:layout_marginTop="16dp"/>
+
+</LinearLayout>

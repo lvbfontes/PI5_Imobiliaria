@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Real Estate</string>
+    <string name="btnAluguel">Rent</string>
+    <string name="btnCadastro">Register</string>
+    <string name="btnCompra">Sale</string>
+    <string name="btnConfirmaCadastro">Register!</string>
+    <string name="btnEspanhol">Espanhol</string>
+    <string name="btnFrances">Francês</string>
+    <string name="btnIdioma">Language</string>
+    <string name="btnIngles">Inglês</string>
+    <string name="btnLogin">Login</string>
+    <string name="btnPortugues">Português</string>
+    <string name="btnPronto">Done!</string>
+    <string name="btnRecuperarSenha">Password Recovery</string>
+    <string name="edtEmail">E-mail</string>
+    <string name="edtSenha">Password</string>
+    <string name="hintNome">First Name</string>
+    <string name="hintRepeteSenha">Repeat the Password</string>
+    <string name="hintSobrenome">Last Name</string>
+    <string name="toastSenhaDiferente">Passwords don\'t match</string>
+    <string name="txtTelaCadastro">Register</string>
+    <string name="txtTelaFiltroArea">Select the desired area</string>
+    <string name="txtTelaFiltroComodos">Select the number of rooms that you wish</string>
+    <string name="txtTelaFiltroContrato">What are you looking for?</string>
+    <string name="txtTelaFiltroFaixaPreco">Select the price range</string>
+    <string name="txtTelaFiltroTipoImovel">Wich kind of property are you looking for?</string>
+    <string name="txtTelaIdiomas">Select the language</string>
+</resources>

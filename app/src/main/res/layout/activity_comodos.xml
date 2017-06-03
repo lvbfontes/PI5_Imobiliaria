@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="br.com.lvbfontes.piimobiliaria.pesquisaImovel.ComodosActivity">
+
+    <TextView
+        style="@style/CabecalhoFiltros"
+        android:paddingTop="100dp"
+        android:text="@string/txtTelaFiltroComodos"/>
+
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/spinnerComodos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:entries="@array/listaComodos" />
+
+    <Button
+        style="@style/btn"
+        android:id="@+id/btnProntoComodos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/btnPronto"/>
+
+</LinearLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Inmobiliaria</string>
+    <string name="btnAluguel">Alquiler</string>
+    <string name="btnCadastro">Registro</string>
+    <string name="btnCompra">Compra</string>
+    <string name="btnConfirmaCadastro">Registrar!</string>
+    <string name="btnEspanhol">Espanhol</string>
+    <string name="btnFrances">Francês</string>
+    <string name="btnIdioma">Idioma</string>
+    <string name="btnIngles">Inglês</string>
+    <string name="btnLogin">Login</string>
+    <string name="btnPortugues">Português</string>
+    <string name="btnPronto">Listo!</string>
+    <string name="btnRecuperarSenha">Recuperación de Contraseña</string>
+    <string name="edtEmail">E-mail</string>
+    <string name="edtSenha">Contraseña</string>
+    <string name="hintNome">Primer Nombre</string>
+    <string name="hintRepeteSenha">Repita la contraseña</string>
+    <string name="hintSobrenome">Apellido</string>
+    <string name="toastSenhaDiferente">Las contraseñas deben ser iguales</string>
+    <string name="txtTelaCadastro">Registro</string>
+    <string name="txtTelaFiltroArea">Selecciona el área deseada</string>
+    <string name="txtTelaFiltroComodos">Seleccione el número de comodos deseado</string>
+    <string name="txtTelaFiltroContrato">¿Lo qué deseas encontrar?</string>
+    <string name="txtTelaFiltroFaixaPreco">Seleccione el rango de precios</string>
+    <string name="txtTelaFiltroTipoImovel">¿Qué tipo de inmueble busca?</string>
+    <string name="txtTelaIdiomas">Seleccione Idioma</string>
+</resources>

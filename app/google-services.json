@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "223475460490",
+    "firebase_url": "https://pi-imobiliaria.firebaseio.com",
+    "project_id": "pi-imobiliaria",
+    "storage_bucket": "pi-imobiliaria.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:223475460490:android:3c6b962d847eb7d3",
+        "android_client_info": {
+          "package_name": "br.com.lvbfontes.piimobiliaria"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "223475460490-2t27f2dot6afhf9s487g094dl4g7869d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYHoX_E-YqQMoKI5q80XkkDLobSBSnOog"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
