@@ -15,7 +15,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -77,7 +76,7 @@ public class PostActivity extends AppCompatActivity {
 
     private void startPosting() {
 
-        mProgress.setMessage("Fazendo upload...");
+        mProgress.setMessage(getApplicationContext().getResources().getString(R.string.progressUpload));
 
         final String tipoImovel, comodos, valor, area, contrato;
         tipoImovel = mPostTipoImovel.getText().toString().trim();
@@ -108,7 +107,7 @@ public class PostActivity extends AppCompatActivity {
                 }
             });
         } else {
-            Toast.makeText(PostActivity.this, R.string.toastPostActivity, Toast.LENGTH_SHORT).show();
+            Toast.makeText(PostActivity.this, R.string.toastCamposEmpty, Toast.LENGTH_SHORT).show();
         }
     }
 

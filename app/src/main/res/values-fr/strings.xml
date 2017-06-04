@@ -35,5 +35,8 @@
     <string name="titleConfiguracoes">Paramètres</string>
     <string name="titlePesquisar">Rechercher Immobilier</string>
     <string name="imgButtonDesc">Ajouter Une Image</string>
-    <string name="toastPostActivity">Aucun champ doit rester vide!</string>
+    <string name="toastCamposEmpty">Aucun champ doit rester vide!</string>
+    <string name="progressRegistro">S\'inscrire...</string>
+    <string name="progressUpload">Téléchargement...</string>
+    <string name="titleLogout">Connectez - Out</string>
 </resources>

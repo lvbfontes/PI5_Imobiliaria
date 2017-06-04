@@ -24,7 +24,7 @@
     <string name="txtTelaFiltroComodos">Select the number of rooms that you wish</string>
     <string name="txtTelaFiltroContrato">What are you looking for?</string>
     <string name="txtTelaFiltroFaixaPreco">Select the price range</string>
-    <string name="txtTelaFiltroTipoImovel">Wich kind of property are you looking for?</string>
+    <string name="txtTelaFiltroTipoImovel">Which kind of property are you looking for?</string>
     <string name="txtTelaIdiomas">Select the language</string>
     <string name="btnSalvar">Save!</string>
     <string name="hintArea">Area</string>
@@ -35,5 +35,8 @@
     <string name="titleConfiguracoes">Settings</string>
     <string name="titlePesquisar">Search Residences</string>
     <string name="imgButtonDesc">Add Image</string>
-    <string name="toastPostActivity">No field should be left blank!</string>
+    <string name="toastCamposEmpty">No field should be left blank!</string>
+    <string name="titleLogout">Logout</string>
+    <string name="progressRegistro">Sign Up...</string>
+    <string name="progressUpload">Uploading...</string>
 </resources>

@@ -73,5 +73,8 @@
         <item>3000m²</item>
         <item>4000m²</item>
     </string-array>
-    <string name="toastPostActivity">Nenhum campo deve ficar em branco!</string>
+    <string name="toastCamposEmpty">Nenhum campo deve ficar em branco!</string>
+    <string name="progressUpload">Fazendo o upload...</string>
+    <string name="progressRegistro">Registrando...</string>
+    <string name="titleLogout">Sair</string>
 </resources>

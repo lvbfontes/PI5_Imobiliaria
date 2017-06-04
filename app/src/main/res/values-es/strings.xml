@@ -35,5 +35,8 @@
     <string name="titleConfiguracoes">Configuración</string>
     <string name="titlePesquisar">Buscar Inmuebles</string>
     <string name="imgButtonDesc">Añadir Imagen</string>
-    <string name="toastPostActivity">¡Ningún campo debe quedar en blanco!</string>
+    <string name="toastCamposEmpty">¡Ningún campo debe quedar en blanco!</string>
+    <string name="progressRegistro">Registraté...</string>
+    <string name="progressUpload">Cargando...</string>
+    <string name="titleLogout">Cerrar sesión</string>
 </resources>
