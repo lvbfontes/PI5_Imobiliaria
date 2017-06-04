@@ -38,6 +38,7 @@
     <string name="hintPreco">Valor</string>
     <string name="hintArea">Área</string>
     <string name="btnSalvar">Salvar!</string>
+    <string name="imgButtonDesc">Adicionar Imagem</string>
 
     <string-array name="listaIdiomas">
         <item>Português</item>
@@ -72,4 +73,5 @@
         <item>3000m²</item>
         <item>4000m²</item>
     </string-array>
+    <string name="toastPostActivity">Nenhum campo deve ficar em branco!</string>
 </resources>

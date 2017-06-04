@@ -78,7 +78,6 @@ public class PostActivity extends AppCompatActivity {
     private void startPosting() {
 
         mProgress.setMessage("Fazendo upload...");
-        mProgress.show();
 
         final String tipoImovel, comodos, valor, area, contrato;
         tipoImovel = mPostTipoImovel.getText().toString().trim();
@@ -88,6 +87,7 @@ public class PostActivity extends AppCompatActivity {
         contrato = s.getSelectedItem().toString().trim();
 
         if(!TextUtils.isEmpty(tipoImovel) && !TextUtils.isEmpty(comodos) && !TextUtils.isEmpty(valor) && !TextUtils.isEmpty(area) && !TextUtils.isEmpty(contrato) && imageUri != null) {
+            mProgress.show();
             StorageReference filepath = mStorage.child("Fotos_Imovel").child(imageUri.getLastPathSegment());
             filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -99,6 +99,7 @@ public class PostActivity extends AppCompatActivity {
                     newPost.child("Valor").setValue(valor);
                     newPost.child("Contrato").setValue(contrato);
                     newPost.child("Imagem").setValue(downloadUrl.toString());
+                    newPost.child("Area").setValue(area);
                     //newPost.child("UserId").setValue(FirebaseAuth.getCurrentUser());
 
                     mProgress.dismiss();
@@ -106,6 +107,8 @@ public class PostActivity extends AppCompatActivity {
                     startActivity(new Intent(PostActivity.this, DashboardActivity.class));
                 }
             });
+        } else {
+            Toast.makeText(PostActivity.this, R.string.toastPostActivity, Toast.LENGTH_SHORT).show();
         }
     }
 

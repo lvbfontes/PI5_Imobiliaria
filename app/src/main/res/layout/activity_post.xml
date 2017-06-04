@@ -9,6 +9,7 @@
     tools:context="br.com.lvbfontes.piimobiliaria.PostActivity">
 
     <ImageButton
+        android:contentDescription="@string/imgButtonDesc"
         android:id="@+id/imgButtonImagem"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,9 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:autoText="false"
+        android:layout_below="@+id/spinnerDashboardContrato"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         android:hint="@string/hintTipoImovel" />
 
     <EditText

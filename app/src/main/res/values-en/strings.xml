@@ -26,4 +26,14 @@
     <string name="txtTelaFiltroFaixaPreco">Select the price range</string>
     <string name="txtTelaFiltroTipoImovel">Wich kind of property are you looking for?</string>
     <string name="txtTelaIdiomas">Select the language</string>
+    <string name="btnSalvar">Save!</string>
+    <string name="hintArea">Area</string>
+    <string name="hintComodos">Rooms Quantity</string>
+    <string name="hintPreco">Price</string>
+    <string name="hintTipoImovel">Residence Type</string>
+    <string name="titleAdicionar">Add</string>
+    <string name="titleConfiguracoes">Settings</string>
+    <string name="titlePesquisar">Search Residences</string>
+    <string name="imgButtonDesc">Add Image</string>
+    <string name="toastPostActivity">No field should be left blank!</string>
 </resources>

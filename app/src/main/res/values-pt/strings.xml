@@ -26,4 +26,14 @@
     <string name="txtTelaFiltroFaixaPreco">Selecione a faixa de preço</string>
     <string name="txtTelaFiltroTipoImovel">Que tipo de imóvel você procura?</string>
     <string name="txtTelaIdiomas">Selecione o Idioma</string>
+    <string name="btnSalvar">Salvar!</string>
+    <string name="hintArea">Área</string>
+    <string name="hintComodos">Número de Cômodos</string>
+    <string name="hintPreco">Valor</string>
+    <string name="hintTipoImovel">Tipo de Imóvel</string>
+    <string name="titleAdicionar">Adicionar</string>
+    <string name="titleConfiguracoes">Configurações</string>
+    <string name="titlePesquisar">Pesquisar Imóveis</string>
+    <string name="imgButtonDesc">Adicionar Imagem</string>
+    <string name="toastPostActivity">Nenhum campo deve ficar em branco!</string>
 </resources>
