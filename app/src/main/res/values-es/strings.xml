@@ -36,7 +36,12 @@
     <string name="titlePesquisar">Buscar Inmuebles</string>
     <string name="imgButtonDesc">Añadir Imagen</string>
     <string name="toastCamposEmpty">¡Ningún campo debe quedar en blanco!</string>
-    <string name="progressRegistro">Registraté...</string>
-    <string name="progressUpload">Cargando...</string>
+    <string name="progressRegistro">Registraté&#8230;</string>
+    <string name="progressUpload">Cargando&#8230;</string>
     <string name="titleLogout">Cerrar sesión</string>
+    <string name="btnFinalizaCadastro">Finalizar Registro</string>
+    <string name="progressFinalizaCadastro">Terminando el registro&#8230;</string>
+    <string name="progressLogin">Inicio de sesión&#8230;</string>
+    <string name="contentImgFinalizaCadastro">Agregar foto de perfil</string>
+    <string name="toastSenhaIncorreta">¡Contraseña incorrecta!</string>
 </resources>

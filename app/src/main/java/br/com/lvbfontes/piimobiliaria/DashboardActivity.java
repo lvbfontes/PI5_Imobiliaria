@@ -12,11 +12,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import br.com.lvbfontes.piimobiliaria.Modelo.Imovel;
@@ -25,6 +29,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     private RecyclerView mListaDashboard;
     private DatabaseReference mDatabase;
+    private DatabaseReference mDatabaseUsuarios;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -38,7 +43,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser() == null) {
-                    Intent loginIntent = new Intent(DashboardActivity.this, CadastroActivity.class);
+                    Intent loginIntent = new Intent(DashboardActivity.this, LoginActivity.class);
                     loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(loginIntent);
                 }
@@ -46,9 +51,15 @@ public class DashboardActivity extends AppCompatActivity {
         };
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Imovel");
+        mDatabaseUsuarios = FirebaseDatabase.getInstance().getReference().child("Usuarios");
+
+        mDatabaseUsuarios.keepSynced(true);
+
         mListaDashboard = (RecyclerView) findViewById(R.id.listaDashboard);
         mListaDashboard.setHasFixedSize(true);
         mListaDashboard.setLayoutManager(new LinearLayoutManager(this));
+
+        checkUserExists();
     }
 
     @Override
@@ -74,7 +85,33 @@ public class DashboardActivity extends AppCompatActivity {
         mListaDashboard.setAdapter(firebaseRecyclerAdapter);
     }
 
-    public static class DashboardViewHolder extends RecyclerView.ViewHolder {
+    private void checkUserExists() {
+
+        if(mAuth.getCurrentUser() != null) {
+
+            final String userId = mAuth.getCurrentUser().getUid();
+
+            mDatabaseUsuarios.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    if(!dataSnapshot.hasChild(userId)) {
+
+                        Intent FinalizaCadastroIntent = new Intent(DashboardActivity.this, FinalizaCadastroActivity.class);
+                        FinalizaCadastroIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(FinalizaCadastroIntent);
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+    }
+
+    private static class DashboardViewHolder extends RecyclerView.ViewHolder {
         View mView;
 
         public DashboardViewHolder(View itemView) {
@@ -82,32 +119,32 @@ public class DashboardActivity extends AppCompatActivity {
             mView = itemView;
         }
 
-        public void setTipoImovel(String tipoImovel) {
+        private void setTipoImovel(String tipoImovel) {
             TextView dashTipoImovel = (TextView) mView.findViewById(R.id.dashTipoImovel);
             dashTipoImovel.setText(tipoImovel);
         }
 
-        public void setContrato(String contrato) {
+        private void setContrato(String contrato) {
             TextView dashContrato = (TextView) mView.findViewById(R.id.dashContrato);
             dashContrato.setText(contrato);
         }
 
-        public void setComodos(String comodos) {
+        private void setComodos(String comodos) {
             TextView dashComodos = (TextView) mView.findViewById(R.id.dashComodos);
             dashComodos.setText(comodos);
         }
 
-        public void setPreco(String preco) {
+        private void setPreco(String preco) {
             TextView dashPreco = (TextView) mView.findViewById(R.id.dashPreco);
             dashPreco.setText(preco);
         }
 
-        public void setArea(String area) {
+        private void setArea(String area) {
             TextView dashArea = (TextView) mView.findViewById(R.id.dashArea);
             dashArea.setText(area);
         }
 
-        public void setImage(Context context, String image) {
+        private void setImage(Context context, String image) {
             ImageView dashImage = (ImageView) mView.findViewById(R.id.dashImage);
             Picasso.with(context).load(image).into(dashImage);
         }

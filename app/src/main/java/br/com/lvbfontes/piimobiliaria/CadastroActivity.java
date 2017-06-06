@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class CadastroActivity extends AppCompatActivity {
 
     private EditText edtNome;
-    private EditText edtSobrenome;
+    //private EditText edtSobrenome;
     private EditText edtEmail;
     private EditText edtSenha;
     private EditText edtRepeteSenha;
@@ -41,7 +41,7 @@ public class CadastroActivity extends AppCompatActivity {
         mProgress = new ProgressDialog(this);
 
         edtNome = (EditText) findViewById(R.id.edtNome);
-        edtSobrenome = (EditText) findViewById(R.id.edtSobrenome);
+        //edtSobrenome = (EditText) findViewById(R.id.edtSobrenome);
         edtEmail = (EditText) findViewById(R.id.edtEmail);
         edtSenha = (EditText) findViewById(R.id.edtSenha);
         edtRepeteSenha = (EditText) findViewById(R.id.edtRepeteSenha);
@@ -62,11 +62,11 @@ public class CadastroActivity extends AppCompatActivity {
     private void startRegister() {
 
         final String nome = edtNome.getText().toString().trim();
-        final String sobrenome = edtSobrenome.getText().toString().trim();
+        //final String sobrenome = edtSobrenome.getText().toString().trim();
         String senha = edtSenha.getText().toString().trim();
         String email = edtEmail.getText().toString().trim();
 
-        if(!TextUtils.isEmpty(nome) && !TextUtils.isEmpty(sobrenome) && !TextUtils.isEmpty(senha) && !TextUtils.isEmpty(email)) {
+        if(!TextUtils.isEmpty(nome) && /*!TextUtils.isEmpty(sobrenome) &&*/  !TextUtils.isEmpty(senha) && !TextUtils.isEmpty(email)) {
 
             mProgress.setMessage(getApplicationContext().getResources().getString(R.string.progressRegistro));
             mProgress.show();
@@ -80,12 +80,13 @@ public class CadastroActivity extends AppCompatActivity {
                         String userId = mAuth.getCurrentUser().getUid();
                         DatabaseReference currentUserDb = mDatabase.child(userId);
                         currentUserDb.child("nome").setValue(nome);
-                        currentUserDb.child("sobrenome").setValue(sobrenome);
+                        //currentUserDb.child("sobrenome").setValue(sobrenome);
                         currentUserDb.child("image").setValue("default");
 
                         mProgress.dismiss();
 
-                        Intent dashboardIntent = new Intent(CadastroActivity.this, DashboardActivity.class);
+                        Intent dashboardIntent = new Intent(CadastroActivity.this, FinalizaCadastroActivity.class);
+                        dashboardIntent.putExtra("nome", nome);
                         dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(dashboardIntent);
                     }

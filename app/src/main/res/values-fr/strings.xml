@@ -36,7 +36,12 @@
     <string name="titlePesquisar">Rechercher Immobilier</string>
     <string name="imgButtonDesc">Ajouter Une Image</string>
     <string name="toastCamposEmpty">Aucun champ doit rester vide!</string>
-    <string name="progressRegistro">S\'inscrire...</string>
-    <string name="progressUpload">Téléchargement...</string>
+    <string name="progressRegistro">S\'inscrire&#8230;</string>
+    <string name="progressUpload">Téléchargement&#8230;</string>
     <string name="titleLogout">Connectez - Out</string>
+    <string name="btnFinalizaCadastro">Fin Registre</string>
+    <string name="progressFinalizaCadastro">Enfin&#8230; Inscrivez-vous</string>
+    <string name="progressLogin">Exploitation forestière&#8230;</string>
+    <string name="contentImgFinalizaCadastro">Ajouter un profil Photo</string>
+    <string name="toastSenhaIncorreta">Mot de passe incorrect!</string>
 </resources>

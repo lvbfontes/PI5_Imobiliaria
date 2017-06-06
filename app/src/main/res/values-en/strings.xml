@@ -37,6 +37,11 @@
     <string name="imgButtonDesc">Add Image</string>
     <string name="toastCamposEmpty">No field should be left blank!</string>
     <string name="titleLogout">Logout</string>
-    <string name="progressRegistro">Sign Up...</string>
-    <string name="progressUpload">Uploading...</string>
+    <string name="progressRegistro">Sign Up&#8230;</string>
+    <string name="progressUpload">Uploading&#8230;</string>
+    <string name="btnFinalizaCadastro">Finish Registration</string>
+    <string name="progressFinalizaCadastro">Finishing Registration&#8230;</string>
+    <string name="progressLogin">Logging in&#8230;</string>
+    <string name="contentImgFinalizaCadastro">Add Profile Picture</string>
+    <string name="toastSenhaIncorreta">Password Incorrect!</string>
 </resources>
