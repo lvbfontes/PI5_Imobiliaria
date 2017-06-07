@@ -15,13 +15,19 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
+
+import br.com.lvbfontes.piimobiliaria.pesquisaImovel.ContratoActivity;
 
 public class FinalizaCadastroActivity extends AppCompatActivity {
 
@@ -91,6 +97,8 @@ public class FinalizaCadastroActivity extends AppCompatActivity {
 
     private void finalizaCadastro() {
 
+        final DatabaseReference funcao = FirebaseDatabase.getInstance().getReference();
+
         //pegar strings dos campos da activity
         final String nome = edtNome.getText().toString().trim();
         final String sobrenome = edtSobrenome.getText().toString().trim();
@@ -117,10 +125,21 @@ public class FinalizaCadastroActivity extends AppCompatActivity {
 
                     mProgress.dismiss();
 
-                    Intent dashboardIntent = new Intent(FinalizaCadastroActivity.this, DashboardActivity.class);
-                    dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(dashboardIntent);
+                    String funcaoUsuario = funcao.child("Usuarios").child("funcao").toString();
 
+                    if (funcaoUsuario.equals("corretor")) {
+
+                        Intent dashboardIntent = new Intent(FinalizaCadastroActivity.this, DashboardActivity.class);
+                        dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(dashboardIntent);
+
+                    } else {
+
+                        Intent contratoIntent = new Intent(FinalizaCadastroActivity.this, ContratoActivity.class);
+                        contratoIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(contratoIntent);
+
+                    }
                 }
             });
 

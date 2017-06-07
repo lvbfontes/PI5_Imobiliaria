@@ -24,6 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
+import br.com.lvbfontes.piimobiliaria.pesquisaImovel.ContratoActivity;
+
 public class LoginActivity extends AppCompatActivity {
 
     private Button btnLogin;
@@ -123,14 +125,29 @@ public class LoginActivity extends AppCompatActivity {
 
         final String userId = mAuth.getCurrentUser().getUid();
 
+        final DatabaseReference funcao = FirebaseDatabase.getInstance().getReference();
+
+        final String funcaoUsuario = funcao.child("Usuarios").child("funcao").toString();
+
         mDatabaseUsuarios.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.hasChild(userId)) {
 
-                    Intent dashboardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
-                    dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(dashboardIntent);
+                    if (funcaoUsuario.equals("corretor")) {
+
+                        Intent dashboardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
+                        dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(dashboardIntent);
+
+                    } else {
+
+                        Intent contratoIntent = new Intent(LoginActivity.this, ContratoActivity.class);
+                        contratoIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(contratoIntent);
+
+                    }
+
 
                 } else {
 
