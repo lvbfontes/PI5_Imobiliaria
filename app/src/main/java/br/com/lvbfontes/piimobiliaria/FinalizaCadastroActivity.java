@@ -7,20 +7,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -35,6 +32,12 @@ public class FinalizaCadastroActivity extends AppCompatActivity {
     private EditText edtNome;
     private EditText edtSobrenome;
     private Button btnFinalizaCadastro;
+
+    private final String funcaoCorretor = "corretor";
+    private final String funcaoCliente = "cliente";
+    private Spinner spinnerCadastro;
+    private String[] arraySpinner;
+    String usuarioCorretor, usuarioCliente;
 
     private Intent intent;
     private Bundle b;
@@ -63,6 +66,13 @@ public class FinalizaCadastroActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         //referencia de storage root/Profile_Images
         mStorageImage = FirebaseStorage.getInstance().getReference().child("Profile_Images");
+
+        usuarioCorretor = getResources().getString(R.string.usuarioCorretor);
+        usuarioCliente = getResources().getString(R.string.usuarioCliente);
+        this.arraySpinner = new String[] {usuarioCorretor, usuarioCliente};
+        spinnerCadastro = (Spinner) findViewById(R.id.spinnerFinalizaCadastro);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arraySpinner);
+        spinnerCadastro.setAdapter(adapter);
 
         imgButtonProfilePic = (ImageButton) findViewById(R.id.imgButtonProfilePic);
         edtNome = (EditText) findViewById(R.id.edtNome);
@@ -97,11 +107,19 @@ public class FinalizaCadastroActivity extends AppCompatActivity {
 
     private void finalizaCadastro() {
 
-        final DatabaseReference funcao = FirebaseDatabase.getInstance().getReference();
+        //final DatabaseReference refFuncao = FirebaseDatabase.getInstance().getReference();
 
         //pegar strings dos campos da activity
         final String nome = edtNome.getText().toString().trim();
         final String sobrenome = edtSobrenome.getText().toString().trim();
+        final String funcao;
+
+        if(spinnerCadastro.getSelectedItemPosition() == 0) {
+            funcao = funcaoCorretor;
+        } else {
+            funcao = funcaoCliente;
+        }
+
 
         //userId recebe o ID do usuario criado no firebase
         final String userId = mAuth.getCurrentUser().getUid();
@@ -122,12 +140,14 @@ public class FinalizaCadastroActivity extends AppCompatActivity {
                     mDatabaseUsuarios.child(userId).child("nome").setValue(nome);
                     mDatabaseUsuarios.child(userId).child("sobrenome").setValue(sobrenome);
                     mDatabaseUsuarios.child(userId).child("image").setValue(downloadUri);
+                    mDatabaseUsuarios.child(userId).child("funcao").setValue(funcao);
 
                     mProgress.dismiss();
 
-                    String funcaoUsuario = funcao.child("Usuarios").child("funcao").toString();
+                    //String funcaoUsuario = refFuncao.child("Usuarios").child("funcao").toString();
+                    String funcaoUsuario = mDatabaseUsuarios.child("funcao").toString();
 
-                    if (funcaoUsuario.equals("corretor")) {
+                    if (funcaoUsuario == "corretor") {
 
                         Intent dashboardIntent = new Intent(FinalizaCadastroActivity.this, DashboardActivity.class);
                         dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

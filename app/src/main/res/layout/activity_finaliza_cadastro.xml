@@ -45,6 +45,13 @@
         android:inputType="textCapWords"
         android:hint="@string/hintSobrenome"/>
 
+    <android.support.v7.widget.AppCompatSpinner
+        android:id="@+id/spinnerFinalizaCadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_below="@+id/edtSobrenome"/>
+
     <Button
         style="@style/btn"
         android:id="@+id/btnFinalizaCadastro"
@@ -53,4 +60,5 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="@string/btnFinalizaCadastro" />
+
 </RelativeLayout>

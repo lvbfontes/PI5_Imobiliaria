@@ -44,4 +44,11 @@
     <string name="progressLogin">Exploitation forestière&#8230;</string>
     <string name="contentImgFinalizaCadastro">Ajouter un profil Photo</string>
     <string name="toastSenhaIncorreta">Mot de passe incorrect!</string>
+    <string name="fieldTipoImovel">Type de Propriété:</string>
+    <string name="fieldPreco">Valuer:</string>
+    <string name="fieldContrato">Contrat:</string>
+    <string name="fieldComodos">Chambres:</string>
+    <string name="fieldArea">Zone (m²):</string>
+    <string name="usuarioCorretor">Courtier</string>
+    <string name="usuarioCliente">Client</string>
 </resources>

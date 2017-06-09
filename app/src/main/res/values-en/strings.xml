@@ -44,4 +44,11 @@
     <string name="progressLogin">Logging in&#8230;</string>
     <string name="contentImgFinalizaCadastro">Add Profile Picture</string>
     <string name="toastSenhaIncorreta">Password Incorrect!</string>
+    <string name="fieldTipoImovel">Residence Type:</string>
+    <string name="fieldPreco">Price:</string>
+    <string name="fieldContrato">Agreement:</string>
+    <string name="fieldComodos">Rooms:</string>
+    <string name="fieldArea">Area (m²):</string>
+    <string name="usuarioCorretor">Agent</string>
+    <string name="usuarioCliente">Customer</string>
 </resources>

@@ -82,4 +82,11 @@
     <string name="progressFinalizaCadastro">Finalizando Cadastro&#8230;</string>
     <string name="contentImgFinalizaCadastro">Adicionar Foto de Perfil</string>
     <string name="toastSenhaIncorreta">Senha Incorreta!</string>
+    <string name="usuarioCorretor">Corretor</string>
+    <string name="usuarioCliente">Cliente</string>
+    <string name="fieldTipoImovel">Tipo de Imóvel:</string>
+    <string name="fieldContrato">Contrato:</string>
+    <string name="fieldPreco">Valor:</string>
+    <string name="fieldComodos">Cômodos:</string>
+    <string name="fieldArea">Área (m²):</string>
 </resources>

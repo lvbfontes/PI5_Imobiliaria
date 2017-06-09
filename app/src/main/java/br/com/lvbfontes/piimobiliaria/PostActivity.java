@@ -23,16 +23,20 @@ import com.google.firebase.storage.UploadTask;
 
 public class PostActivity extends AppCompatActivity {
 
+    private final String contratoAluguel = "Aluguel";
+    private final String contratoCompra = "Compra";
     private String[] arraySpinner;
     private ImageButton mSelecionarImagem;
     private static final int REQUEST_GALERIA = 1;
     private EditText mPostTipoImovel, mPostComodos, mPostValor, mPostArea;
     private Button btnPost;
-    private Spinner s;
+    private Spinner spinnerPost;
     private Uri imageUri = null;
     private StorageReference mStorage;
     private DatabaseReference mDatabase;
     private ProgressDialog mProgress;
+    private String aluguel;
+    private String compra;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +53,13 @@ public class PostActivity extends AppCompatActivity {
         mPostArea = (EditText) findViewById(R.id.edtArea);
         btnPost = (Button) findViewById(R.id.btnPostFirebase);
 
-        String Aluguel = getResources().getString(R.string.btnAluguel);
-        String Compra = getResources().getString(R.string.btnCompra);
-        this.arraySpinner = new String[] {Aluguel, Compra};
-        s = (Spinner) findViewById(R.id.spinnerDashboardContrato);
+        aluguel = getResources().getString(R.string.btnAluguel);
+        compra = getResources().getString(R.string.btnCompra);
+
+        this.arraySpinner = new String[] {aluguel, compra};
+        spinnerPost = (Spinner) findViewById(R.id.spinnerDashboardContrato);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arraySpinner);
-        s.setAdapter(adapter);
+        spinnerPost.setAdapter(adapter);
 
         mSelecionarImagem = (ImageButton) findViewById(R.id.imgButtonImagem);
         mSelecionarImagem.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +88,13 @@ public class PostActivity extends AppCompatActivity {
         comodos = mPostComodos.getText().toString().trim();
         valor = mPostValor.getText().toString().trim();
         area = mPostArea.getText().toString().trim();
-        contrato = s.getSelectedItem().toString().trim();
+        //contrato = spinnerPost.getSelectedItem().toString().trim();
+
+        if (spinnerPost.getSelectedItemPosition() == 0) {
+            contrato = contratoAluguel;
+        } else {
+            contrato = contratoCompra;
+        }
 
         if(!TextUtils.isEmpty(tipoImovel) && !TextUtils.isEmpty(comodos) && !TextUtils.isEmpty(valor) && !TextUtils.isEmpty(area) && !TextUtils.isEmpty(contrato) && imageUri != null) {
             mProgress.show();

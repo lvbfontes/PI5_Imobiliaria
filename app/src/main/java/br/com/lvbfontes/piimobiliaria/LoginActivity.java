@@ -127,14 +127,13 @@ public class LoginActivity extends AppCompatActivity {
 
         final DatabaseReference funcao = FirebaseDatabase.getInstance().getReference();
 
-        final String funcaoUsuario = funcao.child("Usuarios").child("funcao").toString();
-
         mDatabaseUsuarios.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 if(dataSnapshot.hasChild(userId)) {
 
-                    if (funcaoUsuario.equals("corretor")) {
+                    if (dataSnapshot.child(userId).child("funcao").getValue().equals("corretor")) {
 
                         Intent dashboardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
                         dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -147,7 +146,6 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(contratoIntent);
 
                     }
-
 
                 } else {
 
