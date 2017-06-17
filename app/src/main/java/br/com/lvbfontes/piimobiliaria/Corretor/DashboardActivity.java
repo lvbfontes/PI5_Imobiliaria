@@ -1,4 +1,4 @@
-package br.com.lvbfontes.piimobiliaria;
+package br.com.lvbfontes.piimobiliaria.Corretor;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,9 +20,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import br.com.lvbfontes.piimobiliaria.Cadastro.FinalizaCadastroActivity;
+import br.com.lvbfontes.piimobiliaria.Acesso.LoginActivity;
 import br.com.lvbfontes.piimobiliaria.Modelo.Imovel;
+import br.com.lvbfontes.piimobiliaria.R;
+import br.com.lvbfontes.piimobiliaria.SobreActivity;
 
 public class DashboardActivity extends AppCompatActivity {
 
@@ -54,12 +59,13 @@ public class DashboardActivity extends AppCompatActivity {
         mDatabaseUsuarios = FirebaseDatabase.getInstance().getReference().child("Usuarios");
 
         mDatabaseUsuarios.keepSynced(true);
+        mDatabase.keepSynced(true);
 
         mListaDashboard = (RecyclerView) findViewById(R.id.listaDashboard);
         mListaDashboard.setHasFixedSize(true);
         mListaDashboard.setLayoutManager(new LinearLayoutManager(this));
 
-        checkUserExists();
+        checkIfUserExists();
     }
 
     @Override
@@ -72,20 +78,50 @@ public class DashboardActivity extends AppCompatActivity {
                 Imovel.class, R.layout.dashboard_row, DashboardViewHolder.class, mDatabase
         ) {
             @Override
-            protected void populateViewHolder(DashboardViewHolder viewHolder, Imovel model, int position) {
-                viewHolder.setTipoImovel(model.getTipo());
-                viewHolder.setContrato(model.getContrato());
-                viewHolder.setComodos(model.getComodos());
-                viewHolder.setPreco(model.getValor());
-                viewHolder.setArea(model.getArea());
-                viewHolder.setImage(getApplicationContext(), model.getImagem());
+            protected void populateViewHolder(DashboardViewHolder viewHolder, final Imovel modelo, int position) {
+
+                final String idImovel = getRef(position).getKey();
+
+                viewHolder.setTipoImovel(modelo.getTipo());
+                viewHolder.setContrato(modelo.getContrato());
+                viewHolder.setComodos(modelo.getComodos());
+                viewHolder.setPreco(modelo.getValor());
+                viewHolder.setArea(modelo.getArea());
+                viewHolder.setImage(getApplicationContext(), modelo.getImagem());
+
+                viewHolder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        TextView tipoImovel = (TextView) v.findViewById(R.id.dashTipoImovel);
+                        TextView tipoContrato = (TextView) v.findViewById(R.id.dashContrato);
+                        TextView preco = (TextView) v.findViewById(R.id.dashPreco);
+                        TextView numeroComodos = (TextView) v.findViewById(R.id.dashComodos);
+                        TextView area = (TextView) v.findViewById(R.id.dashArea);
+                        ImageView imagemImovel = (ImageView) v.findViewById(R.id.dashImage);
+
+
+                        Intent visualizarImovelIntent = new Intent(DashboardActivity.this, VisualizarImovelActivity.class);
+
+                        visualizarImovelIntent.putExtra("idImovel", idImovel);
+                        visualizarImovelIntent.putExtra("tipoImovel", tipoImovel.getText().toString());
+                        visualizarImovelIntent.putExtra("tipoContrato", tipoContrato.getText().toString());
+                        visualizarImovelIntent.putExtra("preco", preco.getText().toString());
+                        visualizarImovelIntent.putExtra("numeroComodos", numeroComodos.getText().toString());
+                        visualizarImovelIntent.putExtra("area", area.getText().toString());
+                        visualizarImovelIntent.putExtra("imagem", imagemImovel.getDrawable().toString());
+
+                        startActivity(visualizarImovelIntent);
+
+                    }
+                });
             }
         };
 
         mListaDashboard.setAdapter(firebaseRecyclerAdapter);
     }
 
-    private void checkUserExists() {
+    private void checkIfUserExists() {
 
         if(mAuth.getCurrentUser() != null) {
 
@@ -144,14 +180,32 @@ public class DashboardActivity extends AppCompatActivity {
             dashArea.setText(area);
         }
 
-        private void setImage(Context context, String image) {
-            ImageView dashImage = (ImageView) mView.findViewById(R.id.dashImage);
-            Picasso.with(context).load(image).into(dashImage);
+        private void setImage(final Context context, final String image) {
+
+            final ImageView dashImage = (ImageView) mView.findViewById(R.id.dashImage);
+
+            //Picasso.with(context).load(image).into(dashImage);
+
+            Picasso.with(context).load(image).networkPolicy(NetworkPolicy.OFFLINE).into(dashImage, new Callback() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError() {
+
+                    Picasso.with(context).load(image).into(dashImage);
+
+                }
+            });
+
         }
     }
 
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.dashboard_menu, menu);
+        getMenuInflater().inflate(R.menu.menu_dashboard, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -164,6 +218,10 @@ public class DashboardActivity extends AppCompatActivity {
 
         if (item.getItemId() == R.id.action_logout) {
             logout();
+        }
+
+        if (item.getItemId() == R.id.action_sobre) {
+            startActivity(new Intent(DashboardActivity.this, SobreActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

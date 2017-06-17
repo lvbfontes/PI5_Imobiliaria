@@ -31,8 +31,8 @@
     <string name="hintComodos">Número de Habitaciones</string>
     <string name="hintPreco">Valoraciones</string>
     <string name="hintTipoImovel">Tipo de Propriedad</string>
-    <string name="titleAdicionar">Añadir</string>
-    <string name="titleConfiguracoes">Configuración</string>
+    <string name="optionsMenuAdicionar">Añadir</string>
+    <string name="optionsMenuConfiguracoes">Configuración</string>
     <string name="titlePesquisar">Buscar Inmuebles</string>
     <string name="imgButtonDesc">Añadir Imagen</string>
     <string name="toastCamposEmpty">¡Ningún campo debe quedar en blanco!</string>

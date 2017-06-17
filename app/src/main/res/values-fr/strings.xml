@@ -31,8 +31,8 @@
     <string name="hintComodos">Nombre de Chambres</string>
     <string name="hintPreco">Valeur</string>
     <string name="hintTipoImovel">Type de Propriété</string>
-    <string name="titleAdicionar">Ajouter</string>
-    <string name="titleConfiguracoes">Paramètres</string>
+    <string name="optionsMenuAdicionar">Ajouter</string>
+    <string name="optionsMenuConfiguracoes">Paramètres</string>
     <string name="titlePesquisar">Rechercher Immobilier</string>
     <string name="imgButtonDesc">Ajouter Une Image</string>
     <string name="toastCamposEmpty">Aucun champ doit rester vide!</string>

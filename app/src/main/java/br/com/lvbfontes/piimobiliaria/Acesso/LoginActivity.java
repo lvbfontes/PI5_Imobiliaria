@@ -1,4 +1,4 @@
-package br.com.lvbfontes.piimobiliaria;
+package br.com.lvbfontes.piimobiliaria.Acesso;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -24,6 +24,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
+import br.com.lvbfontes.piimobiliaria.Cadastro.CadastroActivity;
+import br.com.lvbfontes.piimobiliaria.Cadastro.FinalizaCadastroActivity;
+import br.com.lvbfontes.piimobiliaria.Corretor.DashboardActivity;
+import br.com.lvbfontes.piimobiliaria.IdiomasActivity;
+import br.com.lvbfontes.piimobiliaria.R;
 import br.com.lvbfontes.piimobiliaria.pesquisaImovel.ContratoActivity;
 
 public class LoginActivity extends AppCompatActivity {
@@ -39,7 +44,6 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseUsuarios;
     private FirebaseAuth mAuth;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         lerIdioma();
@@ -92,13 +96,27 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(intent, 1);
             }
         });
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        try {
+            super.onActivityResult(requestCode, resultCode, data);
+            this.setContentView(R.layout.activity_login);
+            recreate();
+        } catch (Exception e) {
+            Toast.makeText(this, "Erro: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     private void checkLogin() {
         String email = edtEmail.getText().toString().trim();
         String senha = edtSenha.getText().toString().trim();
 
-        if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha)) {
+        if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha)) {
 
             mProgress.setMessage(getApplicationContext().getResources().getString(R.string.progressLogin));
             mProgress.show();
@@ -107,9 +125,9 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
-                    if(task.isSuccessful()) {
+                    if (task.isSuccessful()) {
                         mProgress.dismiss();
-                        checkUserExists();
+                        checkIfUserExists();
                     } else {
                         mProgress.dismiss();
                         Toast.makeText(LoginActivity.this, R.string.toastSenhaIncorreta, Toast.LENGTH_SHORT).show();
@@ -121,57 +139,48 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void checkUserExists() {
+    private void checkIfUserExists() {
 
-        final String userId = mAuth.getCurrentUser().getUid();
+        if (mAuth.getCurrentUser() != null) {
 
-        final DatabaseReference funcao = FirebaseDatabase.getInstance().getReference();
+            final String userId = mAuth.getCurrentUser().getUid();
 
-        mDatabaseUsuarios.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            //final DatabaseReference funcao = FirebaseDatabase.getInstance().getReference();
 
-                if(dataSnapshot.hasChild(userId)) {
+            mDatabaseUsuarios.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    if (dataSnapshot.child(userId).child("funcao").getValue().equals("corretor")) {
+                    if (dataSnapshot.hasChild(userId)) {
 
-                        Intent dashboardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
-                        dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(dashboardIntent);
+                        if (dataSnapshot.child(userId).child("funcao").getValue().equals("corretor")) {
+
+                            Intent dashboardIntent = new Intent(LoginActivity.this, DashboardActivity.class);
+                            dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(dashboardIntent);
+
+                        } else {
+
+                            Intent contratoIntent = new Intent(LoginActivity.this, ContratoActivity.class);
+                            contratoIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(contratoIntent);
+
+                        }
 
                     } else {
 
-                        Intent contratoIntent = new Intent(LoginActivity.this, ContratoActivity.class);
-                        contratoIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(contratoIntent);
+                        Intent finalizaCadastroIntent = new Intent(LoginActivity.this, FinalizaCadastroActivity.class);
+                        finalizaCadastroIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(finalizaCadastroIntent);
 
                     }
+                }
 
-                } else {
-
-                    Intent finalizaCadastroIntent = new Intent(LoginActivity.this, FinalizaCadastroActivity.class);
-                    finalizaCadastroIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(finalizaCadastroIntent);
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
                 }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        try {
-            super.onActivityResult(requestCode, resultCode, data);
-            this.setContentView(R.layout.activity_login);
-            recreate();
-        }
-        catch (Exception e) {
-            Toast.makeText(this, "Erro: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            });
         }
     }
 

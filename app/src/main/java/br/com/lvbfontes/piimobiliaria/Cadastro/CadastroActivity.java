@@ -1,4 +1,4 @@
-package br.com.lvbfontes.piimobiliaria;
+package br.com.lvbfontes.piimobiliaria.Cadastro;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -7,10 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,16 +18,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import br.com.lvbfontes.piimobiliaria.R;
+
 public class CadastroActivity extends AppCompatActivity {
 
     private EditText edtNome;
-    //private EditText edtSobrenome;
     private EditText edtEmail;
     private EditText edtSenha;
     private EditText edtRepeteSenha;
     private Button btnConfirmaCadastro;
 
     private FirebaseAuth mAuth;
+    //private FirebaseAuth.AuthStateListener mAuthListener;
+
     private DatabaseReference mDatabase;
     private ProgressDialog mProgress;
 
@@ -38,12 +39,14 @@ public class CadastroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
+        //mAuth.addAuthStateListener(mAuthListener);
+
+        //Get Firebase auth instance
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Usuarios");
         mProgress = new ProgressDialog(this);
 
         edtNome = (EditText) findViewById(R.id.edtNome);
-        //edtSobrenome = (EditText) findViewById(R.id.edtSobrenome);
         edtEmail = (EditText) findViewById(R.id.edtEmail);
         edtSenha = (EditText) findViewById(R.id.edtSenha);
         edtRepeteSenha = (EditText) findViewById(R.id.edtRepeteSenha);
@@ -64,11 +67,10 @@ public class CadastroActivity extends AppCompatActivity {
     private void startRegister() {
 
         final String nome = edtNome.getText().toString().trim();
-        //final String sobrenome = edtSobrenome.getText().toString().trim();
-        String senha = edtSenha.getText().toString().trim();
         String email = edtEmail.getText().toString().trim();
+        String senha = edtSenha.getText().toString().trim();
 
-        if(!TextUtils.isEmpty(nome) && /*!TextUtils.isEmpty(sobrenome) &&*/  !TextUtils.isEmpty(senha) && !TextUtils.isEmpty(email)) {
+        if(!TextUtils.isEmpty(nome) && !TextUtils.isEmpty(senha) && !TextUtils.isEmpty(email)) {
 
             mProgress.setMessage(getApplicationContext().getResources().getString(R.string.progressRegistro));
             mProgress.show();
@@ -79,10 +81,9 @@ public class CadastroActivity extends AppCompatActivity {
 
                     if(task.isSuccessful()) {
 
-                        String userId = mAuth.getCurrentUser().getUid();
+                        String userId = mAuth.getCurrentUser().getUid().toString();
                         DatabaseReference currentUserDb = mDatabase.child(userId);
                         currentUserDb.child("nome").setValue(nome);
-                        //currentUserDb.child("sobrenome").setValue(sobrenome);
                         currentUserDb.child("image").setValue("default");
 
                         mProgress.dismiss();
@@ -91,6 +92,12 @@ public class CadastroActivity extends AppCompatActivity {
                         dashboardIntent.putExtra("nome", nome);
                         dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(dashboardIntent);
+
+                    } else {
+
+                        Toast.makeText(CadastroActivity.this, "Erro task Successful", Toast.LENGTH_SHORT).show();
+                        mProgress.dismiss();
+
                     }
                 }
             });

@@ -1,4 +1,4 @@
-package br.com.lvbfontes.piimobiliaria;
+package br.com.lvbfontes.piimobiliaria.Cadastro;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,14 +16,19 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+import br.com.lvbfontes.piimobiliaria.Corretor.DashboardActivity;
+import br.com.lvbfontes.piimobiliaria.R;
 import br.com.lvbfontes.piimobiliaria.pesquisaImovel.ContratoActivity;
 
 public class FinalizaCadastroActivity extends AppCompatActivity {
@@ -41,7 +46,6 @@ public class FinalizaCadastroActivity extends AppCompatActivity {
 
     private Intent intent;
     private Bundle b;
-    private String nomeIntent;
 
     private Uri mImageUri;
 
@@ -107,8 +111,6 @@ public class FinalizaCadastroActivity extends AppCompatActivity {
 
     private void finalizaCadastro() {
 
-        //final DatabaseReference refFuncao = FirebaseDatabase.getInstance().getReference();
-
         //pegar strings dos campos da activity
         final String nome = edtNome.getText().toString().trim();
         final String sobrenome = edtSobrenome.getText().toString().trim();
@@ -144,22 +146,30 @@ public class FinalizaCadastroActivity extends AppCompatActivity {
 
                     mProgress.dismiss();
 
-                    //String funcaoUsuario = refFuncao.child("Usuarios").child("funcao").toString();
-                    String funcaoUsuario = mDatabaseUsuarios.child("funcao").toString();
+                    mDatabaseUsuarios.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    if (funcaoUsuario == "corretor") {
+                            if(dataSnapshot.child(userId).child("funcao").getValue().equals("corretor")) {
 
-                        Intent dashboardIntent = new Intent(FinalizaCadastroActivity.this, DashboardActivity.class);
-                        dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(dashboardIntent);
+                                Intent dashboardIntent = new Intent(FinalizaCadastroActivity.this, DashboardActivity.class);
+                                dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(dashboardIntent);
 
-                    } else {
+                            } else {
 
-                        Intent contratoIntent = new Intent(FinalizaCadastroActivity.this, ContratoActivity.class);
-                        contratoIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(contratoIntent);
+                                Intent contratoIntent = new Intent(FinalizaCadastroActivity.this, ContratoActivity.class);
+                                contratoIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(contratoIntent);
 
-                    }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
                 }
             });
 

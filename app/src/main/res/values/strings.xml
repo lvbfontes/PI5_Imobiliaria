@@ -31,8 +31,8 @@
 
     <string name="toastSenhaDiferente">As senhas devem ser iguais.</string>
     <string name="titlePesquisar">Pesquisar Imóveis</string>
-    <string name="titleConfiguracoes">Configurações</string>
-    <string name="titleAdicionar">Adicionar</string>
+    <string name="optionsMenuConfiguracoes">Configurações</string>
+    <string name="optionsMenuAdicionar">Adicionar</string>
     <string name="hintTipoImovel">Tipo do Imóvel</string>
     <string name="hintComodos">Número de Cômodos</string>
     <string name="hintPreco">Valor</string>
@@ -89,4 +89,7 @@
     <string name="fieldPreco">Valor:</string>
     <string name="fieldComodos">Cômodos:</string>
     <string name="fieldArea">Área (m²):</string>
+    <string name="optionsMenuSobre">Sobre</string>
+    <string name="titleSobre">Sobre</string>
+    <string name="sobreAutores">Autores:</string>
 </resources>

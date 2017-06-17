@@ -31,8 +31,8 @@
     <string name="hintComodos">Rooms Quantity</string>
     <string name="hintPreco">Price</string>
     <string name="hintTipoImovel">Residence Type</string>
-    <string name="titleAdicionar">Add</string>
-    <string name="titleConfiguracoes">Settings</string>
+    <string name="optionsMenuAdicionar">Add</string>
+    <string name="optionsMenuConfiguracoes">Settings</string>
     <string name="titlePesquisar">Search Residences</string>
     <string name="imgButtonDesc">Add Image</string>
     <string name="toastCamposEmpty">No field should be left blank!</string>

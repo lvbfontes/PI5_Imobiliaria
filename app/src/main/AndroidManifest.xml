@@ -5,13 +5,19 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".PIImobiliaria"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".Acesso.LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
             <!--
             intent-filter>
@@ -21,26 +27,24 @@
             </intent-filter!
             -->
         </activity>
-        <activity android:name=".CadastroActivity" />
+        <activity android:name=".Cadastro.CadastroActivity" />
         <activity android:name=".IdiomasActivity" />
         <activity android:name=".pesquisaImovel.ContratoActivity" />
         <activity android:name=".pesquisaImovel.TipoImovelActivity" />
-        <activity android:name=".RecuperarSenhaActivity" />
+        <activity android:name=".Acesso.RecuperarSenhaActivity" />
         <activity android:name=".pesquisaImovel.ComodosActivity" />
         <activity android:name=".pesquisaImovel.AreaActivity" />
         <activity android:name=".pesquisaImovel.FaixaDePrecoActivity" />
         <activity android:name=".pesquisaImovel.ListaImovelActivity" />
-        <activity android:name=".DashboardActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".PostActivity" />
-        <activity android:name=".FinalizaCadastroActivity" />
-        <activity android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat"/>
+        <activity android:name=".Corretor.DashboardActivity" />
+        <activity android:name=".Corretor.PostActivity" />
+        <activity android:name=".Cadastro.FinalizaCadastroActivity" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+        <activity android:name=".SobreActivity" />
+        <activity android:name=".Corretor.EditarImovelActivity" />
+        <activity android:name=".Corretor.VisualizarImovelActivity"></activity>
     </application>
 
 </manifest>

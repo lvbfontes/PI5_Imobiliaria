@@ -8,8 +8,11 @@
         app:showAsAction="always"/>
 
     <item android:id="@+id/action_configuracoes"
-        android:title="@string/titleConfiguracoes"
+        android:title="@string/optionsMenuConfiguracoes"
         app:showAsAction="never"/>
+
+    <item android:id="@+id/action_sobre"
+        android:title="@string/optionsMenuSobre" />
 
     <item android:id="@+id/action_logout"
         android:title="@string/titleLogout"

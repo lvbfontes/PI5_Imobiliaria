@@ -1,8 +1,9 @@
-package br.com.lvbfontes.piimobiliaria;
+package br.com.lvbfontes.piimobiliaria.Corretor;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,27 +15,45 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+
+import br.com.lvbfontes.piimobiliaria.R;
 
 public class PostActivity extends AppCompatActivity {
 
     private final String contratoAluguel = "Aluguel";
     private final String contratoCompra = "Compra";
+
     private String[] arraySpinner;
-    private ImageButton mSelecionarImagem;
+    private Spinner spinnerPost;
+
     private static final int REQUEST_GALERIA = 1;
+
+    private ImageButton mSelecionarImagem;
     private EditText mPostTipoImovel, mPostComodos, mPostValor, mPostArea;
     private Button btnPost;
-    private Spinner spinnerPost;
     private Uri imageUri = null;
+
     private StorageReference mStorage;
     private DatabaseReference mDatabase;
+    private DatabaseReference mDatabaseUser;
+    private FirebaseAuth mAuth;
+    private FirebaseUser mCurrentUser;
+
     private ProgressDialog mProgress;
+
     private String aluguel;
     private String compra;
 
@@ -42,6 +61,13 @@ public class PostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        mCurrentUser = mAuth.getCurrentUser();
+
+        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(mCurrentUser.getUid());
+
 
         mStorage = FirebaseStorage.getInstance().getReference();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Imovel");
@@ -102,19 +128,45 @@ public class PostActivity extends AppCompatActivity {
             filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Uri downloadUrl = taskSnapshot.getDownloadUrl();
-                    DatabaseReference newPost = mDatabase.push();
-                    newPost.child("Tipo").setValue(tipoImovel);
-                    newPost.child("Comodos").setValue(comodos);
-                    newPost.child("Valor").setValue(valor);
-                    newPost.child("Contrato").setValue(contrato);
-                    newPost.child("Imagem").setValue(downloadUrl.toString());
-                    newPost.child("Area").setValue(area);
-                    //newPost.child("UserId").setValue(FirebaseAuth.getCurrentUser());
+                    final Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                    final DatabaseReference newPost = mDatabase.push();
+
+                    mDatabaseUser.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                            newPost.child("Tipo").setValue(tipoImovel);
+                            newPost.child("Comodos").setValue(comodos);
+                            newPost.child("Valor").setValue(valor);
+                            newPost.child("Contrato").setValue(contrato);
+                            newPost.child("Imagem").setValue(downloadUrl.toString());
+                            newPost.child("Area").setValue(area);
+                            newPost.child("UserId").setValue(mCurrentUser.getUid());
+                            newPost.child("Username").setValue(dataSnapshot.child("nome").getValue())
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+
+                                            if(task.isSuccessful()) {
+                                                Toast.makeText(PostActivity.this, "Dados inseridos!", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(PostActivity.this, DashboardActivity.class));
+                                            } else {
+                                                Toast.makeText(PostActivity.this, "Erro ao inserir dados", Toast.LENGTH_SHORT).show();
+                                            }
+
+                                        }
+                                    });
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
 
                     mProgress.dismiss();
-                    Toast.makeText(PostActivity.this, "Dados inseridos!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(PostActivity.this, DashboardActivity.class));
+
+                    //startActivity(new Intent(PostActivity.this, DashboardActivity.class));
                 }
             });
         } else {

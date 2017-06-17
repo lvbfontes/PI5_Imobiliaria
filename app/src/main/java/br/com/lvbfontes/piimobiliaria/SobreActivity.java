@@ -3,11 +3,11 @@ package br.com.lvbfontes.piimobiliaria;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class RecuperarSenhaActivity extends AppCompatActivity {
+public class SobreActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recuperar_senha);
+        setContentView(R.layout.activity_sobre);
     }
 }

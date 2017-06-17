@@ -31,8 +31,8 @@
     <string name="hintComodos">Número de Cômodos</string>
     <string name="hintPreco">Valor</string>
     <string name="hintTipoImovel">Tipo de Imóvel</string>
-    <string name="titleAdicionar">Adicionar</string>
-    <string name="titleConfiguracoes">Configurações</string>
+    <string name="optionsMenuAdicionar">Adicionar</string>
+    <string name="optionsMenuConfiguracoes">Configurações</string>
     <string name="titlePesquisar">Pesquisar Imóveis</string>
     <string name="imgButtonDesc">Adicionar Imagem</string>
     <string name="toastCamposEmpty">Nenhum campo deve ficar em branco!</string>
