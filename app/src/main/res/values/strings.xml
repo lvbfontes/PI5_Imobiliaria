@@ -31,7 +31,7 @@
 
     <string name="toastSenhaDiferente">As senhas devem ser iguais.</string>
     <string name="titlePesquisar">Pesquisar Imóveis</string>
-    <string name="optionsMenuConfiguracoes">Configurações</string>
+    <string name="optionsMenuIdioma">Idioma</string>
     <string name="optionsMenuAdicionar">Adicionar</string>
     <string name="hintTipoImovel">Tipo do Imóvel</string>
     <string name="hintComodos">Número de Cômodos</string>
@@ -92,4 +92,9 @@
     <string name="optionsMenuSobre">Sobre</string>
     <string name="titleSobre">Sobre</string>
     <string name="sobreAutores">Autores:</string>
+    <string name="txtTelaRecuperaSenha">Recuperar Senha</string>
+    <string name="btnEnviarRecuperacaoSenha">Enviar E-mail de Recuperação</string>
+    <string name="toastEmailEmpty">Digite um e-mail!</string>
+    <string name="progressEnviandoEmail">Enviando e-mail&#8230;</string>
+    <string name="toastEmailEnviado">E-mail enviado!</string>
 </resources>

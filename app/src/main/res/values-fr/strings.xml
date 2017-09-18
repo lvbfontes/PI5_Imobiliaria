@@ -32,7 +32,7 @@
     <string name="hintPreco">Valeur</string>
     <string name="hintTipoImovel">Type de Propriété</string>
     <string name="optionsMenuAdicionar">Ajouter</string>
-    <string name="optionsMenuConfiguracoes">Paramètres</string>
+    <string name="optionsMenuIdioma">Langue</string>
     <string name="titlePesquisar">Rechercher Immobilier</string>
     <string name="imgButtonDesc">Ajouter Une Image</string>
     <string name="toastCamposEmpty">Aucun champ doit rester vide!</string>
@@ -51,4 +51,12 @@
     <string name="fieldArea">Zone (m²):</string>
     <string name="usuarioCorretor">Courtier</string>
     <string name="usuarioCliente">Client</string>
+    <string name="btnEnviarRecuperacaoSenha">Envoyer un courrier de récupération</string>
+    <string name="optionsMenuSobre">Sur</string>
+    <string name="sobreAutores">Auteurs:</string>
+    <string name="titleSobre">Sur</string>
+    <string name="txtTelaRecuperaSenha">Récupérer mot de passe</string>
+    <string name="progressEnviandoEmail">Envoi d\'e-mail.</string>
+    <string name="toastEmailEmpty">Tapez un email!</string>
+    <string name="toastEmailEnviado">Courriel envoyé!</string>
 </resources>

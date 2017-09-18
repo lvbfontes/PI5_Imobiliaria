@@ -8,4 +8,25 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     tools:context="br.com.lvbfontes.piimobiliaria.Acesso.RecuperarSenhaActivity">
 
+    <TextView
+        style="@style/CabecalhoFiltros"
+        android:paddingTop="50dp"
+        android:paddingBottom="20dp"
+        android:text="@string/txtTelaRecuperaSenha"/>
+
+    <EditText
+        android:id="@+id/edtEmailRecuperar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/edtEmail"
+        android:layout_margin="20dp"
+        android:inputType="textEmailAddress" />
+
+    <Button
+        style="@style/btn"
+        android:id="@+id/btnEnviarRecuperacaoSenha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/btnEnviarRecuperacaoSenha"/>
+
 </LinearLayout>

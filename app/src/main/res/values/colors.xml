@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#4a148c</color>
     <color name="colorPrimaryDark">#12005e</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#2e7d32</color>
 
     <!--https://developer.android.com/training/material/theme.html-->
 

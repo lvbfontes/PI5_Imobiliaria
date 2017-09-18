@@ -2,6 +2,7 @@ package br.com.lvbfontes.piimobiliaria.Corretor;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,8 +26,11 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import java.util.Locale;
+
 import br.com.lvbfontes.piimobiliaria.Cadastro.FinalizaCadastroActivity;
 import br.com.lvbfontes.piimobiliaria.Acesso.LoginActivity;
+import br.com.lvbfontes.piimobiliaria.IdiomasActivity;
 import br.com.lvbfontes.piimobiliaria.Modelo.Imovel;
 import br.com.lvbfontes.piimobiliaria.R;
 import br.com.lvbfontes.piimobiliaria.SobreActivity;
@@ -41,13 +46,14 @@ public class DashboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        lerIdioma();
         setContentView(R.layout.activity_dashboard);
 
         mAuth = FirebaseAuth.getInstance();
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() == null) {
+                if (firebaseAuth.getCurrentUser() == null) {
                     Intent loginIntent = new Intent(DashboardActivity.this, LoginActivity.class);
                     loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(loginIntent);
@@ -66,6 +72,17 @@ public class DashboardActivity extends AppCompatActivity {
         mListaDashboard.setLayoutManager(new LinearLayoutManager(this));
 
         checkIfUserExists();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        try {
+            super.onActivityResult(requestCode, resultCode, data);
+            this.setContentView(R.layout.activity_dashboard);
+            recreate();
+        } catch (Exception e) {
+            Toast.makeText(this, "Erro: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -109,7 +126,8 @@ public class DashboardActivity extends AppCompatActivity {
                         visualizarImovelIntent.putExtra("preco", preco.getText().toString());
                         visualizarImovelIntent.putExtra("numeroComodos", numeroComodos.getText().toString());
                         visualizarImovelIntent.putExtra("area", area.getText().toString());
-                        visualizarImovelIntent.putExtra("imagem", imagemImovel.getDrawable().toString());
+                        //visualizarImovelIntent.putExtra("imagem", imagemImovel.getDrawable().toString());
+                        visualizarImovelIntent.putExtra("imagem", imagemImovel.getId());
 
                         startActivity(visualizarImovelIntent);
 
@@ -123,14 +141,14 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void checkIfUserExists() {
 
-        if(mAuth.getCurrentUser() != null) {
+        if (mAuth.getCurrentUser() != null) {
 
             final String userId = mAuth.getCurrentUser().getUid();
 
             mDatabaseUsuarios.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    if(!dataSnapshot.hasChild(userId)) {
+                    if (!dataSnapshot.hasChild(userId)) {
 
                         Intent FinalizaCadastroIntent = new Intent(DashboardActivity.this, FinalizaCadastroActivity.class);
                         FinalizaCadastroIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -145,6 +163,51 @@ public class DashboardActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_dashboard, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.action_idioma) {
+            Intent intent = new Intent(DashboardActivity.this, IdiomasActivity.class);
+            startActivityForResult(intent, 1);
+        }
+
+        if (item.getItemId() == R.id.action_add) {
+            startActivity(new Intent(DashboardActivity.this, PostActivity.class));
+        }
+
+        if (item.getItemId() == R.id.action_logout) {
+            logout();
+        }
+
+        if (item.getItemId() == R.id.action_sobre) {
+            startActivity(new Intent(DashboardActivity.this, SobreActivity.class));
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
+        mAuth.signOut();
+    }
+
+    private void lerIdioma() {
+        SharedPreferences preferences = getSharedPreferences("imobiliaria", MODE_APPEND);
+        String idioma = preferences.getString("idioma", "pt");
+
+        Locale locale = new Locale(idioma);
+        Locale.setDefault(locale);
+
+        android.content.res.Configuration config = new android.content.res.Configuration();
+        config.setLocale(locale);
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 
     private static class DashboardViewHolder extends RecyclerView.ViewHolder {
@@ -202,32 +265,5 @@ public class DashboardActivity extends AppCompatActivity {
 
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_dashboard, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (item.getItemId() == R.id.action_add) {
-            startActivity(new Intent(DashboardActivity.this, PostActivity.class));
-        }
-
-        if (item.getItemId() == R.id.action_logout) {
-            logout();
-        }
-
-        if (item.getItemId() == R.id.action_sobre) {
-            startActivity(new Intent(DashboardActivity.this, SobreActivity.class));
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void logout() {
-        mAuth.signOut();
-    }
 }
+

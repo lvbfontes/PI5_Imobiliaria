@@ -32,7 +32,7 @@
     <string name="hintPreco">Price</string>
     <string name="hintTipoImovel">Residence Type</string>
     <string name="optionsMenuAdicionar">Add</string>
-    <string name="optionsMenuConfiguracoes">Settings</string>
+    <string name="optionsMenuIdioma">Language</string>
     <string name="titlePesquisar">Search Residences</string>
     <string name="imgButtonDesc">Add Image</string>
     <string name="toastCamposEmpty">No field should be left blank!</string>
@@ -51,4 +51,12 @@
     <string name="fieldArea">Area (m²):</string>
     <string name="usuarioCorretor">Agent</string>
     <string name="usuarioCliente">Customer</string>
+    <string name="btnEnviarRecuperacaoSenha">Send Password Recovery E-mail</string>
+    <string name="optionsMenuSobre">About</string>
+    <string name="sobreAutores">Authors</string>
+    <string name="titleSobre">About</string>
+    <string name="txtTelaRecuperaSenha">Recover Password</string>
+    <string name="progressEnviandoEmail">Sending email&#8230;</string>
+    <string name="toastEmailEmpty">Type an email!</string>
+    <string name="toastEmailEnviado">Email sent!</string>
 </resources>

@@ -50,11 +50,11 @@
         android:layout_height="wrap_content"
         android:text="@string/btnCadastro"/>
 
-    <Button
+    <!--Button
         style="@style/btn"
         android:id="@+id/btnIdioma"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btnIdioma"/>
+        android:text="@string/btnIdioma"/-->
 
 </LinearLayout>

@@ -32,7 +32,7 @@
     <string name="hintPreco">Valoraciones</string>
     <string name="hintTipoImovel">Tipo de Propriedad</string>
     <string name="optionsMenuAdicionar">Añadir</string>
-    <string name="optionsMenuConfiguracoes">Configuración</string>
+    <string name="optionsMenuIdioma">Idioma</string>
     <string name="titlePesquisar">Buscar Inmuebles</string>
     <string name="imgButtonDesc">Añadir Imagen</string>
     <string name="toastCamposEmpty">¡Ningún campo debe quedar en blanco!</string>
@@ -51,4 +51,12 @@
     <string name="fieldArea">Área (m2):</string>
     <string name="usuarioCorretor">Corredor</string>
     <string name="usuarioCliente">Cliente</string>
+    <string name="btnEnviarRecuperacaoSenha">Enviar correo de recuperación</string>
+    <string name="optionsMenuSobre">Sobre</string>
+    <string name="sobreAutores">Autores:</string>
+    <string name="titleSobre">Sobre</string>
+    <string name="txtTelaRecuperaSenha">Recuperar contraseña</string>
+    <string name="progressEnviandoEmail">Envío de correo electrónico.</string>
+    <string name="toastEmailEmpty">¡Escriba un correo electrónico!</string>
+    <string name="toastEmailEnviado">¡Email enviado!</string>
 </resources>

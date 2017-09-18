@@ -7,8 +7,8 @@
         android:title="@string/titlePesquisar"
         app:showAsAction="always"/>
 
-    <item android:id="@+id/action_configuracoes"
-        android:title="@string/optionsMenuConfiguracoes"
+    <item android:id="@+id/action_idioma"
+        android:title="@string/optionsMenuIdioma"
         app:showAsAction="never"/>
 
     <item android:id="@+id/action_sobre"

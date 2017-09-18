@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,7 +36,7 @@ import br.com.lvbfontes.piimobiliaria.pesquisaImovel.ContratoActivity;
 public class LoginActivity extends AppCompatActivity {
 
     private Button btnLogin;
-    private Button btnIdioma;
+    //private Button btnIdioma;
     private Button btnCadastro;
     private EditText edtEmail;
     private EditText edtSenha;
@@ -57,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         mDatabaseUsuarios.keepSynced(true);
 
         btnLogin = (Button) findViewById(R.id.btnLogin);
-        btnIdioma = (Button) findViewById(R.id.btnIdioma);
+        //btnIdioma = (Button) findViewById(R.id.btnIdioma);
         btnCadastro = (Button) findViewById(R.id.btnCadastro);
         btnRecuperarSenha = (Button) findViewById(R.id.btnRecuperarSenha);
 
@@ -89,13 +91,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnIdioma.setOnClickListener(new View.OnClickListener() {
+        /*btnIdioma.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, IdiomasActivity.class);
                 startActivityForResult(intent, 1);
             }
-        });
+        });*/
 
     }
 
@@ -182,6 +184,24 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_login, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.action_idioma) {
+            Intent intent = new Intent(LoginActivity.this, IdiomasActivity.class);
+            startActivityForResult(intent, 1);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void lerIdioma() {

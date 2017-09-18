@@ -22,12 +22,14 @@ public class VisualizarImovelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizar_imovel);
 
-        String imagemPicassoPath = getIntent().getStringExtra("imagem");
+        //String imagemPicassoPath = getIntent().getStringExtra("imagem");
+        int idImagem = getIntent().getIntExtra("imagem", 0);
 
         try {
-            Picasso.with(this).load(imagemPicassoPath).into(imgVisualizarImovel);
+            //Picasso.with(this).load(imagemPicassoPath).into(imgVisualizarImovel);
+            imgVisualizarImovel.setImageResource(idImagem);
         } catch (Exception e) {
-            Toast.makeText(this, getIntent().getStringExtra("imagem"), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, getIntent().getStringExtra("imagem"), Toast.LENGTH_SHORT).show();
         }
 
         txtVisualizarTipo = (TextView) findViewById(R.id.txtVisualizarTipo);
