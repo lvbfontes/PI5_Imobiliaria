@@ -44,7 +44,9 @@
             android:theme="@style/Base.Theme.AppCompat" />
         <activity android:name=".SobreActivity" />
         <activity android:name=".Corretor.EditarImovelActivity" />
-        <activity android:name=".Corretor.VisualizarImovelActivity"></activity>
+        <activity android:name=".Corretor.VisualizarImovelActivity" />
+        <activity android:name=".Admin.AdminDashboardActivity" />
+        <activity android:name=".Admin.CadastroCorretorActivity"></activity>
     </application>
 
 </manifest>

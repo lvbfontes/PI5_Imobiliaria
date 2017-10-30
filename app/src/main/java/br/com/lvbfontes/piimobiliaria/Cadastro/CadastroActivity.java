@@ -67,7 +67,7 @@ public class CadastroActivity extends AppCompatActivity {
     private void startRegister() {
 
         final String nome = edtNome.getText().toString().trim();
-        String email = edtEmail.getText().toString().trim();
+        final String email = edtEmail.getText().toString().trim();
         String senha = edtSenha.getText().toString().trim();
 
         if(!TextUtils.isEmpty(nome) && !TextUtils.isEmpty(senha) && !TextUtils.isEmpty(email)) {
@@ -88,10 +88,11 @@ public class CadastroActivity extends AppCompatActivity {
 
                         mProgress.dismiss();
 
-                        Intent dashboardIntent = new Intent(CadastroActivity.this, FinalizaCadastroActivity.class);
-                        dashboardIntent.putExtra("nome", nome);
-                        dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        startActivity(dashboardIntent);
+                        Intent intent = new Intent(CadastroActivity.this, FinalizaCadastroActivity.class);
+                        intent.putExtra("nome", nome);
+                        intent.putExtra("email", email);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
 
                     } else {
 

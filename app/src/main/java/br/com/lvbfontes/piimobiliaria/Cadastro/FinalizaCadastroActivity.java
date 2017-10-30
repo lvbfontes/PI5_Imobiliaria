@@ -40,9 +40,9 @@ public class FinalizaCadastroActivity extends AppCompatActivity {
 
     private final String funcaoCorretor = "corretor";
     private final String funcaoCliente = "cliente";
-    private Spinner spinnerCadastro;
+    //private Spinner spinnerCadastro;
     private String[] arraySpinner;
-    String usuarioCorretor, usuarioCliente;
+    String usuarioCorretor, usuarioCliente, emailBundleIntent;
 
     private Intent intent;
     private Bundle b;
@@ -56,6 +56,7 @@ public class FinalizaCadastroActivity extends AppCompatActivity {
     private StorageReference mStorageImage;
 
     private ProgressDialog mProgress;
+    private final String emailImobiliaria = "@imobiliaria.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +72,12 @@ public class FinalizaCadastroActivity extends AppCompatActivity {
         //referencia de storage root/Profile_Images
         mStorageImage = FirebaseStorage.getInstance().getReference().child("Profile_Images");
 
-        usuarioCorretor = getResources().getString(R.string.usuarioCorretor);
+        //usuarioCorretor = getResources().getString(R.string.usuarioCorretor);
         usuarioCliente = getResources().getString(R.string.usuarioCliente);
-        this.arraySpinner = new String[] {usuarioCorretor, usuarioCliente};
-        spinnerCadastro = (Spinner) findViewById(R.id.spinnerFinalizaCadastro);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arraySpinner);
-        spinnerCadastro.setAdapter(adapter);
+        //this.arraySpinner = new String[] {usuarioCorretor, usuarioCliente};
+        //spinnerCadastro = (Spinner) findViewById(R.id.spinnerFinalizaCadastro);
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, arraySpinner);
+        //spinnerCadastro.setAdapter(adapter);
 
         imgButtonProfilePic = (ImageButton) findViewById(R.id.imgButtonProfilePic);
         edtNome = (EditText) findViewById(R.id.edtNome);
@@ -85,7 +86,14 @@ public class FinalizaCadastroActivity extends AppCompatActivity {
 
         intent = getIntent();
         b = intent.getExtras();
-        edtNome.setText(b.get("nome").toString());
+
+        emailBundleIntent = b.get("email").toString();
+
+        try {
+            edtNome.setText(b.get("nome").toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         btnFinalizaCadastro.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,11 +124,19 @@ public class FinalizaCadastroActivity extends AppCompatActivity {
         final String sobrenome = edtSobrenome.getText().toString().trim();
         final String funcao;
 
-        if(spinnerCadastro.getSelectedItemPosition() == 0) {
+        if(emailBundleIntent.substring(emailBundleIntent.indexOf("@")).equals(emailImobiliaria)) {
             funcao = funcaoCorretor;
         } else {
             funcao = funcaoCliente;
         }
+
+        //final String funcao = funcaoCliente;
+
+        /*if(spinnerCadastro.getSelectedItemPosition() == 0) {
+            funcao = funcaoCorretor;
+        } else {
+            funcao = funcaoCliente;
+        }*/
 
 
         //userId recebe o ID do usuario criado no firebase

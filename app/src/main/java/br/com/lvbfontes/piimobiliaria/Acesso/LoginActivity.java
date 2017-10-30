@@ -26,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
+import br.com.lvbfontes.piimobiliaria.Admin.AdminDashboardActivity;
 import br.com.lvbfontes.piimobiliaria.Cadastro.CadastroActivity;
 import br.com.lvbfontes.piimobiliaria.Cadastro.FinalizaCadastroActivity;
 import br.com.lvbfontes.piimobiliaria.Corretor.DashboardActivity;
@@ -161,17 +162,26 @@ public class LoginActivity extends AppCompatActivity {
                             dashboardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(dashboardIntent);
 
-                        } else {
+                        }
+
+                        if (dataSnapshot.child(userId).child("funcao").getValue().equals("cliente")) {
 
                             Intent contratoIntent = new Intent(LoginActivity.this, ContratoActivity.class);
                             contratoIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(contratoIntent);
+                        }
 
+                        if (dataSnapshot.child(userId).child("funcao").getValue().equals("admin")) {
+
+                            Intent adminIntent = new Intent(LoginActivity.this, AdminDashboardActivity.class);
+                            adminIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(adminIntent);
                         }
 
                     } else {
 
                         Intent finalizaCadastroIntent = new Intent(LoginActivity.this, FinalizaCadastroActivity.class);
+                        finalizaCadastroIntent.putExtra("email", edtEmail.getText().toString().trim());
                         finalizaCadastroIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(finalizaCadastroIntent);
 

@@ -45,12 +45,12 @@
         android:inputType="textCapWords"
         android:hint="@string/hintSobrenome"/>
 
-    <android.support.v7.widget.AppCompatSpinner
+    <!-- android.support.v7.widget.AppCompatSpinner
         android:id="@+id/spinnerFinalizaCadastro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
-        android:layout_below="@+id/edtSobrenome"/>
+        android:layout_below="@+id/edtSobrenome"/-->
 
     <Button
         style="@style/btn"

@@ -33,8 +33,8 @@ import br.com.lvbfontes.piimobiliaria.R;
 
 public class PostActivity extends AppCompatActivity {
 
-    private final String contratoAluguel = "Aluguel";
-    private final String contratoCompra = "Compra";
+    private final String contratoAluguel = "Locação";
+    private final String contratoCompra = "Venda";
 
     private String[] arraySpinner;
     private Spinner spinnerPost;
@@ -150,6 +150,7 @@ public class PostActivity extends AppCompatActivity {
                                             if(task.isSuccessful()) {
                                                 Toast.makeText(PostActivity.this, "Dados inseridos!", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(PostActivity.this, DashboardActivity.class));
+                                                finish();
                                             } else {
                                                 Toast.makeText(PostActivity.this, "Erro ao inserir dados", Toast.LENGTH_SHORT).show();
                                             }

@@ -59,4 +59,9 @@
     <string name="progressEnviandoEmail">Enviando e-mail&#8230;</string>
     <string name="toastEmailEmpty">Digite um e-mail!</string>
     <string name="toastEmailEnviado">E-mail enviado!</string>
+    <string name="btnCadastroCorretores">Cadastro de Corretores</string>
+    <string name="btnCadastroImoveis">Cadastro de Imóveis</string>
+    <string name="btnRelatorios">Relatórios</string>
+    <string name="toastCadastroRealizado">Cadastro Realizado!</string>
+    <string name="btnConsultaImoveis">Consulta de Imóveis</string>
 </resources>
