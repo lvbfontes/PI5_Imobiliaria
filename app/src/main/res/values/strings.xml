@@ -102,7 +102,7 @@
     <string name="btnRelatorios">Relatórios</string>
     <string name="btnRealizarCadastro">Realizar Cadastro</string>
     <string name="txtCadastroCorretores">Cadastro de Corretores</string>
-    <string name="toastSenhaLength">Senha deve ter no mínimo 6 caracteres.</string>
+    <string name="toastSenhaLength">Senha deve ter no mínimo 6 caracteres</string>
     <string name="toastCadastroRealizado">Cadastro Realizado!</string>
     <string name="btnConsultaImoveis">Consulta de Imóveis</string>
 </resources>

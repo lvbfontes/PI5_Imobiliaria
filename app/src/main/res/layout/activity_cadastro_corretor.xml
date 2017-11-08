@@ -19,17 +19,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <EditText
+    <!--EditText
         android:id="@+id/edtNome"
         android:hint="@string/hintNome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" /!-->
 
-    <EditText
+    <!--EditText
         android:id="@+id/edtSobrenome"
         android:hint="@string/hintSobrenome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" /!-->
 
     <EditText
         android:id="@+id/edtEmail"

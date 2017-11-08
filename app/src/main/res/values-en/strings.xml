@@ -58,4 +58,13 @@
     <string name="txtTelaRecuperaSenha">Recover Password</string>
     <string name="progressEnviandoEmail">Sending email&#8230;</string>
     <string name="toastEmailEmpty">Type an email!</string>
+    <string name="toastEmailEnviado">E-mail sent!</string>
+    <string name="btnCadastroCorretores">Broker Registration</string>
+    <string name="btnCadastroImoveis">Real Estate Registration</string>
+    <string name="btnRelatorios">Reports</string>
+    <string name="btnRealizarCadastro">Register</string>
+    <string name="txtCadastroCorretores">Broker Registration</string>
+    <string name="toastSenhaLength">Password must be at least 6 characters</string>
+    <string name="toastCadastroRealizado">Registration Successfull!</string>
+    <string name="btnConsultaImoveis">Real Estate Search</string>
 </resources>

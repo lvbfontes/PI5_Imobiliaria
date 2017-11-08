@@ -3,6 +3,7 @@ package br.com.lvbfontes.piimobiliaria.Corretor;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -29,12 +30,19 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import br.com.lvbfontes.piimobiliaria.R;
 
 public class PostActivity extends AppCompatActivity {
 
     private final String contratoAluguel = "Locação";
     private final String contratoCompra = "Venda";
+
+    private DateFormat dateFormat;
+    private Date date;
 
     private String[] arraySpinner;
     private Spinner spinnerPost;
@@ -49,8 +57,11 @@ public class PostActivity extends AppCompatActivity {
     private StorageReference mStorage;
     private DatabaseReference mDatabase;
     private DatabaseReference mDatabaseUser;
+    private DatabaseReference mDatabaseLog;
     private FirebaseAuth mAuth;
     private FirebaseUser mCurrentUser;
+
+    private String mKeyImovel;
 
     private ProgressDialog mProgress;
 
@@ -62,15 +73,19 @@ public class PostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        date = new Date();
+
         mAuth = FirebaseAuth.getInstance();
 
         mCurrentUser = mAuth.getCurrentUser();
 
         mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Usuarios").child(mCurrentUser.getUid());
 
-
         mStorage = FirebaseStorage.getInstance().getReference();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Imovel");
+        mDatabaseLog = FirebaseDatabase.getInstance().getReference().child("Log");
+
         mProgress = new ProgressDialog(this);
 
         mPostTipoImovel = (EditText) findViewById(R.id.edtTipoImovel);
@@ -122,19 +137,23 @@ public class PostActivity extends AppCompatActivity {
             contrato = contratoCompra;
         }
 
-        if(!TextUtils.isEmpty(tipoImovel) && !TextUtils.isEmpty(comodos) && !TextUtils.isEmpty(valor) && !TextUtils.isEmpty(area) && !TextUtils.isEmpty(contrato) && imageUri != null) {
+        if(!TextUtils.isEmpty(tipoImovel) && !TextUtils.isEmpty(comodos) &&
+                !TextUtils.isEmpty(valor) && !TextUtils.isEmpty(area) && !TextUtils.isEmpty(contrato) && imageUri != null) {
+
             mProgress.show();
+
             StorageReference filepath = mStorage.child("Fotos_Imovel").child(imageUri.getLastPathSegment());
             filepath.putFile(imageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     final Uri downloadUrl = taskSnapshot.getDownloadUrl();
                     final DatabaseReference newPost = mDatabase.push();
+                    final DatabaseReference newLog = mDatabaseLog.push();
+                    mKeyImovel = newPost.getKey();
 
                     mDatabaseUser.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-
                             newPost.child("Tipo").setValue(tipoImovel);
                             newPost.child("Comodos").setValue(comodos);
                             newPost.child("Valor").setValue(valor);
@@ -142,12 +161,19 @@ public class PostActivity extends AppCompatActivity {
                             newPost.child("Imagem").setValue(downloadUrl.toString());
                             newPost.child("Area").setValue(area);
                             newPost.child("UserId").setValue(mCurrentUser.getUid());
+                            newPost.child("DataCriacao").setValue(dateFormat.format(date));
                             newPost.child("Username").setValue(dataSnapshot.child("nome").getValue())
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
 
                                             if(task.isSuccessful()) {
+
+                                                newLog.child("Data").setValue(dateFormat.format(date));
+                                                newLog.child("UserId").setValue(mCurrentUser.getUid());
+                                                newLog.child("ImovelId").setValue(mKeyImovel);
+                                                newLog.child("Operacao").setValue("Cadastro");
+
                                                 Toast.makeText(PostActivity.this, "Dados inseridos!", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(PostActivity.this, DashboardActivity.class));
                                                 finish();

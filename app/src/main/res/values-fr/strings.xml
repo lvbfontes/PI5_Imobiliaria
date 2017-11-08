@@ -59,4 +59,12 @@
     <string name="progressEnviandoEmail">Envoi d\'e-mail.</string>
     <string name="toastEmailEmpty">Tapez un email!</string>
     <string name="toastEmailEnviado">Courriel envoyé!</string>
+    <string name="btnCadastroCorretores">Enregistrement de Courtier</string>
+    <string name="btnCadastroImoveis">Enregistrement Immobilier</string>
+    <string name="btnRelatorios">Rapports</string>
+    <string name="btnRealizarCadastro">S\'inscrire</string>
+    <string name="txtCadastroCorretores">Enregistrement de Courtier</string>
+    <string name="toastSenhaLength">Le mot de passe doit comporter au moins 6 caractères</string>
+    <string name="toastCadastroRealizado">Fait Registre!</string>
+    <string name="btnConsultaImoveis">Recherche Immobilier</string>
 </resources>

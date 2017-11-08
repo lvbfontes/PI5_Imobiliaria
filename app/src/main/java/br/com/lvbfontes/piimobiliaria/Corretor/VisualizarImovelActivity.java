@@ -6,6 +6,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.io.FileNotFoundException;
@@ -14,13 +16,17 @@ import br.com.lvbfontes.piimobiliaria.R;
 
 public class VisualizarImovelActivity extends AppCompatActivity {
 
-    ImageView imgVisualizarImovel;
-    TextView txtVisualizarTipo, txtVisualizarComodos, txtVisualizarValor, txtVisualizarContrato, txtVisualizarArea;
+    private ImageView imgVisualizarImovel;
+    private TextView txtVisualizarTipo, txtVisualizarComodos, txtVisualizarValor, txtVisualizarContrato, txtVisualizarArea;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visualizar_imovel);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("Imovel");
+
 
         //String imagemPicassoPath = getIntent().getStringExtra("imagem");
         int idImagem = getIntent().getIntExtra("imagem", 0);
