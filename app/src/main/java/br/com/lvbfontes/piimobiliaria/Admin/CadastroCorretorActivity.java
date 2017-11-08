@@ -29,7 +29,7 @@ import br.com.lvbfontes.piimobiliaria.R;
 public class CadastroCorretorActivity extends AppCompatActivity {
 
     private EditText edtNome;
-    private  EditText edtSobrenome;
+    private EditText edtSobrenome;
     private EditText edtEmail;
     private EditText edtSenha;
     private Button btnRealizarCadastro;
@@ -75,12 +75,12 @@ public class CadastroCorretorActivity extends AppCompatActivity {
     private void startRegister() {
 
         final String funcao = "corretor";
-        final String nome = edtNome.getText().toString().trim();
+        //final String nome = edtNome.getText().toString().trim();
         final String email = edtEmail.getText().toString().trim();
         String senha = edtSenha.getText().toString().trim();
-        final String sobrenome = edtSobrenome.getText().toString().trim();
+        //final String sobrenome = edtSobrenome.getText().toString().trim();
 
-        if(!TextUtils.isEmpty(nome) && !TextUtils.isEmpty(sobrenome) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha)) {
+        if(/*!TextUtils.isEmpty(nome) && !TextUtils.isEmpty(sobrenome) &&*/ !TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha)) {
 
             mProgress.setMessage(getApplicationContext().getString(R.string.progressRegistro));
             mProgress.show();

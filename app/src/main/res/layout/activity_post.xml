@@ -8,6 +8,14 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     tools:context="br.com.lvbfontes.piimobiliaria.Corretor.PostActivity">
 
+    <!--ImageButton
+        android:id="@+id/imgButtonCamera"
+        app:srcCompat="@mipmap/ic_camera_alt_black_24dp"
+        android:scaleType="center"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" /!-->
+
     <ImageButton
         android:contentDescription="@string/imgButtonDesc"
         android:id="@+id/imgButtonImagem"
