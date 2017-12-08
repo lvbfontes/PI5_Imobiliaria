@@ -67,4 +67,6 @@
     <string name="btnRealizarCadastro">Realizar Cadastro</string>
     <string name="txtCadastroCorretores">Cadastro de Corretores</string>
     <string name="toastSenhaLength">Senha deve ter no mínimo 6 caracteres</string>
+    <string name="btnEditarImovel">Editar</string>
+    <string name="btnExcluirImovel">Excluir</string>
 </resources>

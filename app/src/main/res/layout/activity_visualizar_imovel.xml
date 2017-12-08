@@ -13,9 +13,10 @@
 
     <ImageView
         android:id="@+id/imgVisualizarImovel"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         app:srcCompat="@mipmap/add_btn" />
 
 
@@ -63,29 +64,21 @@
             android:layout_height="wrap_content"
             android:text="Comodos aqui" />
 
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-
         <TextView
             android:id="@+id/fieldPreco"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:padding="10dp"
             android:text="@string/fieldPreco"
+            android:textAlignment="textEnd"
             android:textStyle="bold" />
-
 
         <TextView
             android:id="@+id/txtVisualizarValor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Valor aqui" />
 
     </LinearLayout>
@@ -111,6 +104,23 @@
             android:layout_height="wrap_content"
             android:text="Contrato aqui" />
 
+        <TextView
+            android:id="@+id/fieldArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="10dp"
+            android:text="@string/fieldArea"
+            android:textAlignment="textEnd"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/txtVisualizarArea"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Área aqui" />
+
     </LinearLayout>
 
 
@@ -120,20 +130,21 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/fieldArea"
+        <Button
+            style="@style/btn"
+            android:id="@+id/btnEditarImovel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="@string/fieldArea"
-            android:textStyle="bold" />
+            android:layout_weight="1"
+            android:text="@string/btnEditarImovel" />
 
-        <TextView
-            android:id="@+id/txtVisualizarArea"
+        <Button
+            style="@style/btn"
+            android:id="@+id/btnExcluirImovel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Área aqui" />
-
+            android:layout_weight="1"
+            android:text="@string/btnExcluirImovel" />
     </LinearLayout>
 
 

@@ -67,4 +67,6 @@
     <string name="toastSenhaLength">Le mot de passe doit comporter au moins 6 caractères</string>
     <string name="toastCadastroRealizado">Fait Registre!</string>
     <string name="btnConsultaImoveis">Recherche Immobilier</string>
+    <string name="btnEditarImovel">Modifier</string>
+    <string name="btnExcluirImovel">Exclure</string>
 </resources>

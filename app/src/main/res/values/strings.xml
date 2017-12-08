@@ -105,4 +105,6 @@
     <string name="toastSenhaLength">Senha deve ter no mínimo 6 caracteres</string>
     <string name="toastCadastroRealizado">Cadastro Realizado!</string>
     <string name="btnConsultaImoveis">Consulta de Imóveis</string>
+    <string name="btnEditarImovel">Editar</string>
+    <string name="btnExcluirImovel">Excluir</string>
 </resources>

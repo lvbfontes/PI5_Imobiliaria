@@ -67,4 +67,6 @@
     <string name="toastSenhaLength">"La contraseña debe tener al menos 6 caracteres "</string>
     <string name="toastCadastroRealizado">Registro Realizado!</string>
     <string name="btnConsultaImoveis">Búsqueda de Inmuebles</string>
+    <string name="btnEditarImovel">Editar</string>
+    <string name="btnExcluirImovel">Eliminar</string>
 </resources>

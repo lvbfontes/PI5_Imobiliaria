@@ -67,4 +67,6 @@
     <string name="toastSenhaLength">Password must be at least 6 characters</string>
     <string name="toastCadastroRealizado">Registration Successfull!</string>
     <string name="btnConsultaImoveis">Real Estate Search</string>
+    <string name="btnEditarImovel">Edit</string>
+    <string name="btnExcluirImovel">Delete</string>
 </resources>
